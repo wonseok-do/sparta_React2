@@ -20,8 +20,19 @@ function App() {
 }
 
 const MyStoreConsumer = () => {
-  const { name } = React.useContext(MyStore);
-  return <div>{name}</div>;
+  const { name, setName } = React.useContext(MyStore);
+  return (
+    <div>
+      <h1>{name}</h1>
+      <button
+        onClick={() => {
+          setName("dundun");
+        }}
+      >
+        이름 바꾸기
+      </button>
+    </div>
+  );
 };
 
 export default App;
