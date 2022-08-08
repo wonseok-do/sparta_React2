@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+
+const MyStore = React.createContext();
 
 function App() {
+  const [name, setName] = useState();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MyStore.Provider value={{ name, setName }}>
+        {/* <MyStore.Consumer>
+          {(value) => {
+            return <div>{value.name}</div>;
+          }}
+        </MyStore.Consumer> */}
+        <MyStoreConsumer />
+      </MyStore.Provider>
     </div>
   );
 }
+
+const MyStoreConsumer = () => {
+  const { name } = React.useContext(MyStore);
+  return <div>{name}</div>;
+};
 
 export default App;
